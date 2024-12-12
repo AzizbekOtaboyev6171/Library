@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="001" author="Azizbek">
+        <sqlFile path="classpath:db/changelog/001-permissions-table.sql"/>
+    </changeSet>
+    <changeSet id="002" author="Azizbek">
+        <sqlFile path="classpath:db/changelog/002-roles-table.sql"/>
+    </changeSet>
+    <changeSet id="003" author="Azizbek">
+        <sqlFile path="classpath:db/changelog/003-users-table.sql"/>
+    </changeSet>
+    <changeSet id="004" author="Azizbek">
+        <sqlFile path="classpath:db/changelog/004-genres-table.sql"/>
+    </changeSet>
+    <changeSet id="005" author="Azizbek">
+        <sqlFile path="classpath:db/changelog/005-authors-table.sql"/>
+    </changeSet>
+    <changeSet id="006" author="Azizbek">
+        <sqlFile path="classpath:db/changelog/006-members-table.sql"/>
+    </changeSet>
+    <changeSet id="007" author="Azizbek">
+        <sqlFile path="classpath:db/changelog/007-books-table.sql"/>
+    </changeSet>
+    <changeSet id="008" author="Azizbek">
+        <sqlFile path="classpath:db/changelog/008-loans-table.sql"/>
+    </changeSet>
+</databaseChangeLog>

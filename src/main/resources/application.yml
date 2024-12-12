@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Library
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/library
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      database-platform: org.hibernate.dialect.MySQLDialect
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+jwt:
+  access-secret: b8daad62310fd1ad5c3929adeb98269851cbbd426d8f8dcd0c0ffeaa78f848ad
+  refresh-secret: ffa3618a2a38cf34cd2cb5338d647694ace10246b83e9f81a26f74c520419896
+  access-expiration: 86400000
+  refresh-expiration: 2592000000
