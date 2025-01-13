@@ -77,6 +77,14 @@ public class JwtTokenProvider {
         return extractClaim(token, Claims::getSubject, secret);
     }
 
+    public String getUsernameFromAccessToken(String token) {
+        return extractSubject(token, accessSecret);
+    }
+
+    public String getUsernameFromRefreshToken(String token) {
+        return extractSubject(token, refreshSecret);
+    }
+
     private Date extractExpiration(String token, String secret) {
         return extractClaim(token, Claims::getExpiration, secret);
     }

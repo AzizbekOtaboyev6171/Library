@@ -51,7 +51,7 @@ public class BookController {
 
     @GetMapping("/search_books")
     @Operation(summary = "Search books by title and author", tags = {"Book"})
-    public ResponseEntity<Page<BookDTO>> searchBooks(@RequestParam(required = false) String keyword, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<Page<BookDTO>> searchBooks(@RequestParam String keyword, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(bookService.searchBooksByKeyword(keyword, page, size));
     }
 

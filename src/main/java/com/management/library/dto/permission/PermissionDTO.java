@@ -11,6 +11,6 @@ public record PermissionDTO(
         @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
         Timestamp createdAt,
         @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-        Timestamp updatedAt
+        Timestamp lastModifiedAt
 ) {
 }

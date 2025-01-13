@@ -124,7 +124,7 @@ public class DataInitializer implements CommandLineRunner {
                         Role.builder()
                                 .name("ADMIN")
                                 .description("Admin role")
-                                .createdBy(1L)
+                                .createdBy(User.builder().id(1L).build())
                                 .permissions(Set.of(createRole, viewRoles, editRole, deleteRole,
                                         createUser, viewUsers, editUser, deleteUser))
                                 .build()
@@ -137,7 +137,18 @@ public class DataInitializer implements CommandLineRunner {
                                 .password(passwordEncoder.encode("12345678"))
 //                                .roles(Set.of(adminRole))
                                 .workTime(8)
-                                .createdBy(1L)
+                                .createdBy(User.builder().id(1L).build())
+                                .build()
+                ));
+
+        User adminUser1 = userRepository.findByUsername("Jony7788$")
+                .orElseGet(() -> userRepository.save(
+                        User.builder()
+                                .username("Jony7788$")
+                                .password(passwordEncoder.encode("12345678"))
+//                                .roles(Set.of(adminRole))
+                                .workTime(8)
+                                .createdBy(User.builder().id(1L).build())
                                 .build()
                 ));
 

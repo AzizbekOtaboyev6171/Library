@@ -4,8 +4,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/library
-    username: root
-    password: 1234
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: none
@@ -16,7 +16,7 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
 jwt:
-  access-secret: b8daad62310fd1ad5c3929adeb98269851cbbd426d8f8dcd0c0ffeaa78f848ad
-  refresh-secret: ffa3618a2a38cf34cd2cb5338d647694ace10246b83e9f81a26f74c520419896
+  access-secret: ${JWT_ACCESS_SECRET}
+  refresh-secret: ${JWT_REFRESH_SECRET}
   access-expiration: 86400000
   refresh-expiration: 2592000000

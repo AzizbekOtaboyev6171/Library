@@ -40,11 +40,13 @@ public class Author {
     @Column(name = "last_modified_at", insertable = false)
     Timestamp lastModifiedAt;
     @CreatedBy
-    @Column(name = "created_by", nullable = false, updatable = false)
-    Long createdBy;
+    @JoinColumn(name = "created_by", nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    User createdBy;
     @LastModifiedBy
-    @Column(name = "last_modified_by", insertable = false)
-    Long lastModifiedBy;
+    @JoinColumn(name = "last_modified_by", insertable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    User lastModifiedBy;
     @Version
     @Column(name = "version")
     long version;

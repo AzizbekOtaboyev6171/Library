@@ -5,6 +5,7 @@ import com.management.library.dto.member.MemberCreateDTO;
 import com.management.library.dto.member.MemberDTO;
 import com.management.library.dto.member.MemberUpdateDTO;
 import com.management.library.entity.Member;
+import com.management.library.entity.User;
 import com.management.library.exceptions.ResourceAlreadyExistsException;
 import com.management.library.exceptions.ResourceNotFoundException;
 import com.management.library.mapper.MemberMapper;
@@ -47,11 +48,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberDTO updateMember(Long id, MemberUpdateDTO memberUpdateDTO) {
         log.info("Updating member with id: {}", id);
-        Long currentUserId = applicationAuditAware.getCurrentAuditor().orElseThrow();
+        User user = applicationAuditAware.getCurrentAuditor().orElseThrow();
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Member with id " + id + " not found"));
-        if (!member.getCreatedBy().equals(currentUserId)) {
-            throw new AccessDeniedException("Member with id " + currentUserId + " can not be updated");
+        if (!member.getCreatedBy().getId().equals(user.getId())) {
+            throw new AccessDeniedException("Member with id " + user.getId() + " can not be updated");
         }
         if (memberRepository.existsByEmailEqualsIgnoreCaseAndIdNot(memberUpdateDTO.email(), id)) {
             throw new ResourceAlreadyExistsException("Member with email " + memberUpdateDTO.email() + " already exists");
@@ -79,11 +80,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void deleteMemberById(Long id) {
         log.info("Deleting member with id: {}", id);
-        Long currentUserId = applicationAuditAware.getCurrentAuditor().orElseThrow();
+        User user = applicationAuditAware.getCurrentAuditor().orElseThrow();
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Member with id " + id + " not found"));
-        if (!member.getCreatedBy().equals(currentUserId)) {
-            throw new AccessDeniedException("Member with id " + currentUserId + " can not be deleted");
+        if (!member.getCreatedBy().getId().equals(user.getId())) {
+            throw new AccessDeniedException("Member with id " + user.getId() + " can not be deleted");
         }
         memberRepository.deleteById(id);
         log.info("Member with id: {} deleted successfully!", id);

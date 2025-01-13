@@ -44,7 +44,8 @@ public class Loan {
     @Column(name = "return_date")
     LocalDate returnDate;
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Builder.Default
+    @Column(name = "status", nullable = false)
     LoanStatus status = LoanStatus.ISSUED;
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -53,11 +54,13 @@ public class Loan {
     @Column(name = "last_modified_at", insertable = false)
     Timestamp lastModifiedAt;
     @CreatedBy
-    @Column(name = "created_by", nullable = false, updatable = false)
-    Long createdBy;
+    @JoinColumn(name = "created_by", nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    User createdBy;
     @LastModifiedBy
-    @Column(name = "last_modified_by", insertable = false)
-    Long lastModifiedBy;
+    @JoinColumn(name = "last_modified_by", insertable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    User lastModifiedBy;
     @Version
     @Column(name = "version")
     long version;
